@@ -16,4 +16,12 @@ addons:
     packages:
     - chefdk
 
-script: ./runtests
+script: cookstyle .
+
+script: foodcritic .
+
+script: chef exec rspec
+
+
+
+
