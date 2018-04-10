@@ -1,0 +1,11 @@
+name 'node-box'
+maintainer 'davideugenepratt'
+maintainer_email 'david@davideugenepratt.com'
+license 'Apache-2.0'
+description 'Installs/Configures php-box'
+long_description 'Installs/Configures php-box'
+version '0.0.1'
+chef_version '>= 12.1' if respond_to?(:chef_version)
+supports 'ubuntu'
+issues_url 'https://github.com/davideugenepratt/node-box/issues'
+source_url 'https://github.com/davideugenepratt/node-box'
