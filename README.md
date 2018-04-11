@@ -1,5 +1,11 @@
 # Node Development Environment Cookbook
 
-Used to provision a Node box.
+[![Build Status](https://travis-ci.org/davideugenepratt/mexnbox.svg?branch=master)](https://travis-ci.org/davideugenepratt/mexnbox)
 
-Includes development environment stuff as well.
+### MongoDB
+
+### Express
+
+### Angular or React
+
+### Node
