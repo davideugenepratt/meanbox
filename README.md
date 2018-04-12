@@ -6,7 +6,9 @@
 
 ### MongoDB
 
-TODO: Install
+Install
+
+Uses the "node" value of the "mexnbox" objec tin the configuration json to determine node verison and which users to install nvm and node to.
 
 ### Express
 
