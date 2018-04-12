@@ -15,8 +15,6 @@ bash 'install nvm' do
 
   else
 
-    Chef::Log.info( "no json" )
-
     node['etc']['passwd'].each do | systemuser, data |
 
       if Dir.exist? '/home/' + systemuser
