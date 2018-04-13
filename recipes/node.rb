@@ -9,7 +9,7 @@ bash 'install nvm' do
 
   users = Array.new
 
-  if ( node['mexnbox']['node'] ) then
+  if node.read( 'mexnbox', 'node', 'users' ) then
 
     users = node['mexnbox']['node']['users']
 
@@ -27,7 +27,7 @@ bash 'install nvm' do
 
   end
 
-  nodeversion = node['mexnbox']['node']['version'] ? node['mexnbox']['node']['version'] : 'node'
+  nodeversion = node.read( 'mexnbox', 'node', 'version' ) ? node['mexnbox']['node']['version'] : 'node'
 
   for username in users
 

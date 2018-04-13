@@ -9,7 +9,7 @@ bash 'install grunt' do
 
   users = Array.new
 
-  if ( node['mexnbox']['grunt'] ) then
+  if node.read( 'mexnbox', 'grunt', 'users' ) then
 
     users = node['mexnbox']['grunt']['users']
 
