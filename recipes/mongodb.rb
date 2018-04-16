@@ -6,6 +6,8 @@
 
 mongoversion = node.read( 'mexnbox', 'mongodb', 'version' ) ? node['mexnbox']['mongodb']['version'] : false
 
+
+
 if node[:platform_family].include?("rhel")
 
   if mongoversion
@@ -52,13 +54,18 @@ else
 
   bash 'create list file for mongodb' do
 
-    if node[:platform].include?("ubuntu") && node[:platform_version].include?("14.04")
+    if node[:platform].include?("ubuntu") == true
 
-      code 'echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list'
+      case node[:platform_version]
 
-    else if node[:platform].include?("ubuntu") && node[:platform_version].include?("16.")
-
-      code 'echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list'
+      when "14.04"
+        code 'echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list'
+      when "16.04"
+        code 'echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list'
+      else
+        code ''
+        Chef::Log.error( "This version of Ubuntu is not supported by MongoDB" )
+      end
 
     end
 
@@ -66,7 +73,7 @@ else
 
   bash 'reload local package database' do
 
-    code 'sudo apt-get update'
+    code 'apt-get -y update'
 
   end
 
@@ -95,7 +102,5 @@ end
 service 'mongod' do
 
   action :start
-
-end
 
 end
