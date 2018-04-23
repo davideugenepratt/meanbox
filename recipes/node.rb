@@ -1,5 +1,5 @@
 #
-# Cookbook:: mexnbox
+# Cookbook:: meanbox
 # Recipe:: node
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
@@ -9,9 +9,9 @@ bash 'install nvm' do
 
   users = Array.new
 
-  if node.read( 'mexnbox', 'node', 'users' ) then
+  if node.read( 'meanbox', 'node', 'users' ) then
 
-    users = node['mexnbox']['node']['users']
+    users = node['meanbox']['node']['users']
 
   else
 
@@ -27,7 +27,7 @@ bash 'install nvm' do
 
   end
 
-  nodeversion = node.read( 'mexnbox', 'node', 'version' ) ? node['mexnbox']['node']['version'] : 'node'
+  nodeversion = node.read( 'meanbox', 'node', 'version' ) ? node['meanbox']['node']['version'] : 'node'
 
   for username in users
 

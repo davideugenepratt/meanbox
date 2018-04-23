@@ -1,16 +1,16 @@
 # MExN Stack Provisioning Cookbook
 
-[![Build Status](https://travis-ci.org/davideugenepratt/mexnbox.svg?branch=master)](https://travis-ci.org/davideugenepratt/mexnbox)
+[![Build Status](https://travis-ci.org/davideugenepratt/meanbox.svg?branch=master)](https://travis-ci.org/davideugenepratt/meanbox)
 
 ## Production
 
 ### MongoDB
 
-mexnbox::mongodb
+meanbox::mongodb
 
 ### Express
 
-mexnbox::express
+meanbox::express
 
 ### Angular or React
 
@@ -18,10 +18,10 @@ TODO: Install
 
 ### Node
 
-mexnbox::node
+meanbox::node
 
 ## Development
 
 ### Grunt
 
-mexnbox::grunt
+meanbox::grunt

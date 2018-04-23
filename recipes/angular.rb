@@ -1,5 +1,5 @@
 #
-# Cookbook:: mexnbox
+# Cookbook:: meanbox
 # Recipe:: angular
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
@@ -8,9 +8,9 @@ bash 'install angular' do
 
   users = Array.new
 
-  if ( node['mexnbox']['angular'] ) then
+  if ( node['meanbox']['angular'] ) then
 
-    users = node['mexnbox']['angular']['users']
+    users = node['meanbox']['angular']['users']
 
   else
 
@@ -26,7 +26,7 @@ bash 'install angular' do
 
   end
 
-  angularversion = node.read( 'mexnbox', 'angular', 'version' ) ? node['mexnbox']['angular']['version'] : 'latest'
+  angularversion = node.read( 'meanbox', 'angular', 'version' ) ? node['meanbox']['angular']['version'] : 'latest'
 
   for username in users
 

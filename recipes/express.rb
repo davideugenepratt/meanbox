@@ -1,5 +1,5 @@
 #
-# Cookbook:: mexnbox
+# Cookbook:: meanbox
 # Recipe:: express
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
@@ -9,9 +9,9 @@ bash 'install express' do
 
   users = Array.new
 
-  if ( node['mexnbox']['express'] ) then
+  if ( node['meanbox']['express'] ) then
 
-    users = node['mexnbox']['express']['users']
+    users = node['meanbox']['express']['users']
 
   else
 
@@ -27,7 +27,7 @@ bash 'install express' do
 
   end
 
-  expressversion = node.read( 'mexnbox', 'express', 'version' ) ? node['mexnbox']['express']['version'] : '4'
+  expressversion = node.read( 'meanbox', 'express', 'version' ) ? node['meanbox']['express']['version'] : '4'
 
   for username in users
 

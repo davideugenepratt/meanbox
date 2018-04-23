@@ -1,5 +1,5 @@
 #
-# Cookbook:: mexnbox
+# Cookbook:: meanbox
 # Recipe:: react
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
@@ -8,9 +8,9 @@ bash 'install react' do
 
   users = Array.new
 
-  if ( node['mexnbox']['react'] ) then
+  if ( node['meanbox']['react'] ) then
 
-    users = node['mexnbox']['react']['users']
+    users = node['meanbox']['react']['users']
 
   else
 
@@ -26,7 +26,7 @@ bash 'install react' do
 
   end
 
-  reactversion = node.read( 'mexnbox', 'react', 'version' ) ? node['mexnbox']['react']['version'] : 'latest'
+  reactversion = node.read( 'meanbox', 'react', 'version' ) ? node['meanbox']['react']['version'] : 'latest'
 
   for username in users
 

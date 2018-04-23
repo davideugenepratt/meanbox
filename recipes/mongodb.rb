@@ -1,10 +1,10 @@
 #
-# Cookbook:: mexnbox
+# Cookbook:: meanbox
 # Recipe:: mongodb
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
-mongoversion = node.read( 'mexnbox', 'mongodb', 'version' ) ? node['mexnbox']['mongodb']['version'] : false
+mongoversion = node.read( 'meanbox', 'mongodb', 'version' ) ? node['meanbox']['mongodb']['version'] : false
 
 
 

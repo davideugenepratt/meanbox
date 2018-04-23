@@ -1,5 +1,5 @@
 #
-# Cookbook:: mexnbox
+# Cookbook:: meanbox
 # Recipe:: grunt
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
@@ -9,9 +9,9 @@ bash 'install grunt' do
 
   users = Array.new
 
-  if node.read( 'mexnbox', 'grunt', 'users' ) then
+  if node.read( 'meanbox', 'grunt', 'users' ) then
 
-    users = node['mexnbox']['grunt']['users']
+    users = node['meanbox']['grunt']['users']
 
   else
 
