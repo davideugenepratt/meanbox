@@ -5,47 +5,31 @@
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
 bash 'install react' do
+  users = []
 
-  users = Array.new
-
-  if ( node['meanbox']['react'] ) then
+  if node.read 'meanbox', 'react'
 
     users = node['meanbox']['react']['users']
 
   else
-
-    node['etc']['passwd'].each do | systemuser, data |
-
-      if Dir.exist? '/home/' + systemuser
-
-        users.push(systemuser)
-
-      end
-
+    node['etc']['passwd'].each do |systemuser, _data|
+      users.push(systemuser) if Dir.exist? '/home/' + systemuser
     end
-
   end
 
-  reactversion = node.read( 'meanbox', 'react', 'version' ) ? node['meanbox']['react']['version'] : 'latest'
+  users.each do |username, _data|
+    next unless Dir.exist? '/home/' + username
 
-  for username in users
+    user username
 
-    if Dir.exist? '/home/' + username
+    cwd '/home/' + username
 
-      user username
+    environment('HOME' => ::Dir.home(username), 'USER' => username)
 
-      cwd '/home/' + username
+    code <<-EOH
 
-      environment ({ 'HOME' => ::Dir.home(username), 'USER' => username })
+      export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && npm install -g create-react-app
 
-      code <<-EOH
-
-        export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && npm install -g create-react-app
-
-      EOH
-
-    end
-
+    EOH
   end
-
 end
