@@ -32,9 +32,7 @@ bash 'install angular' do
     environment('HOME' => ::Dir.home(username), 'USER' => username)
 
     code <<-EOH
-
       export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && npm install -g @angular/cli@#{angularversion}
-
     EOH
   end
 end

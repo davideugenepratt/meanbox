@@ -11,7 +11,7 @@ bash 'install express' do
     users = node['meanbox']['express']['users']
   else
     node['etc']['passwd'].each do |systemuser, _data|
-      users.push(systemuser) unless Dir.exist? '/home/' + systemuser
+      users.push(systemuser) if Dir.exist? '/home/' + systemuser
     end
   end
 
@@ -20,6 +20,8 @@ bash 'install express' do
   users.each do |username, _data|
     next unless Dir.exist? '/home/' + username
 
+    Chef::Log.info('hasdir' + username)
+
     user username
 
     cwd '/home/' + username
@@ -27,9 +29,9 @@ bash 'install express' do
     environment('HOME' => ::Dir.home(username), 'USER' => username)
 
     code <<-EOH
-
       export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && npm install -g express-generator@#{expressversion}
 
     EOH
   end
+
 end
