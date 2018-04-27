@@ -6,14 +6,15 @@
 
 mongoversion = node.read('meanbox', 'mongodb', 'version') ? node['meanbox']['mongodb']['version'] : false
 
-if node['platform_family'].include?('rhel')
+if node['platform'] == 'redhat' || node['platform'] == 'centos'
   if mongoversion
     template "/etc/yum.repos.d/mongodb-org-#{mongoversion}.repo" do
+      source 'mongodb-org.repo.erb'
       variables(mongoversion: mongoversion)
     end
   else
     cookbook_file '/etc/yum.repos.d/mongodb-org-3.6.repo' do
-      source 'mongodb-org-3.6.repo.erb'
+      source 'mongodb-org-3.6.repo'
       action :create
     end
   end

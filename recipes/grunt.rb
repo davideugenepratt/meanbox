@@ -13,7 +13,6 @@ bash 'install grunt' do
     node['etc']['passwd'].each do |systemuser, _data|
       users.push(systemuser) if Dir.exist? '/home/' + systemuser
     end
-
   end
 
   users.each do |username, _data|
